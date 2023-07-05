@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/ayecpt03/JavaScript-Application.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm install' // Or any other build commands specific to your JavaScript application
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'npm start' // Or any other command to run your JavaScript application
+            }
+        }
+    }
+}
