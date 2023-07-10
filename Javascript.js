@@ -6,4 +6,7 @@ function addClick() {
 }
 
 // Simulate a click every second
-setInterval(clickButton, 1000);
+setInterval(function () {
+  document.getElementById('btn1').click();
+}, 1000);
+    
