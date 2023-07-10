@@ -1,15 +1,3 @@
-// Get the button element by its id
-var button = document.getElementById('myButton');
-
-// Function to handle button click event
-function handleClick() {
-  alert('Button Clicked!');
-}
-
-// Add a click event listener to the button
-button.addEventListener('click', handleClick);
-
-
 var http = require('http');
 var fs = require('fs');
 
@@ -33,3 +21,14 @@ var server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+// Get the button element by its id
+var button = document.getElementById('myButton');
+
+// Function to handle button click event
+function handleClick() {
+  alert('Button Clicked!');
+}
+
+// Add a click event listener to the button
+button.addEventListener('click', handleClick);
