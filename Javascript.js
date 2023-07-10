@@ -1,3 +1,12 @@
+var count = 0;
+var clickButton = document.getElementById('clickButton');
+var countElement = document.getElementById('count');
+
+clickButton.addEventListener('click', function() {
+  count++;
+  countElement.textContent = count;
+});
+s
 var http = require('http');
 var fs = require('fs');
 
@@ -22,6 +31,4 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-document.getElementById('myButton').addEventListener('click', function() {
-  alert('Button clicked!');
-});
+
