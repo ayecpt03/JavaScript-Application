@@ -1,19 +1,34 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
-const hostname = '192.168.254.157';
-const port = 8000;
+const hostname = '127.0.0.1';
+const port = 3000;
 
 const server = http.createServer((req, res) => {
-  fs.readFile('/opt/Javascript/JavaScript-Application/index.html', (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('Internal Server Error');
+  let filePath = '.' + req.url;
+  if (filePath === './') {
+    filePath = './index.html';
+  }
+
+  const extname = String(path.extname(filePath)).toLowerCase();
+  const contentType = {
+    '.html': 'text/html',
+    '.js': 'text/javascript',
+  }[extname] || 'application/octet-stream';
+
+  fs.readFile(filePath, function(error, content) {
+    if (error) {
+      if (error.code === 'ENOENT') {
+        res.writeHead(404);
+        res.end('404 - Not Found');
+      } else {
+        res.writeHead(500);
+        res.end('500 - Internal Server Error');
+      }
     } else {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html');
-      res.end(data);
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(content, 'utf-8');
     }
   });
 });

@@ -1,12 +1,8 @@
-let clicks = 0;
+let count = 0;
+const clickButton = document.getElementById('clickButton');
+const countElement = document.getElementById('count');
 
-function addClick() {
-  clicks = clicks + 1;
-  document.querySelector('.total-clicks').textContent = clicks;
-}
-
-// Simulate a click every second
-setInterval(function () {
-  document.getElementById('btn1').click();
-}, 1000);
-    
+clickButton.addEventListener('click', function() {
+  count++;
+  countElement.textContent = count;
+});
